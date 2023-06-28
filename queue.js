@@ -35,44 +35,54 @@ class Queue {
    * and return its value. Should throw an error if the queue is empty. */
 
   dequeue() {
-    if (this.isEmpty) {
-      return null;
+    if (this.isEmpty()) {
+      throw new Error("Queue is empty");
     }
-    const targetNode = this.head;
-    this.head = this.head.next;
-
-    if (this.head === null) {
-      this.tail = null;
-    }
-
+    const value = this.first.val;
+    const targetNode = this.first;
+    this.first = targetNode.next;
     this.size--;
-
-    return targetNode.value;
+    return value;
   }
 
   /** peek(): return the value of the first node in the queue. */
 
-  peek() {}
+  peek() {
+    if (this.isEmpty()) {
+      throw new Error("Queue is empty");
+    }
+    return this.first.val;
+  }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
-  isEmpty() {}
+  isEmpty() {
+    if (this.size === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 module.exports = Queue;
 
-class Queue {
-  constructor() {
-    this.data = [];
-  }
+// class Queue {
+//   constructor() {
+//     this.data = [];
+//   }
 
-  enqueue(val) {
-    return this.data.push(val);
-  }
+//   enqueue(val) {
+//     return this.data.push(val);
+//   }
 
-  dequeue(val) {
-    return this.data.shift(val);
-  }
-}
+//   dequeue(val) {
+//     return this.data.shift(val);
+//   }
+// }
+
+// const res = new Queue();
 
 const res = new Queue();
+res.enqueue(10);
+console.log(res);
